@@ -6,7 +6,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
+COPY src/ /app
 RUN apt-get update && apt-get install -y cron
 RUN echo "$CRON /app/main.py" >> /app/data/backup_log_$(date +"\%Y-\%m-\%d").log 2>&1 > /etc/cron.d/backup-job
 

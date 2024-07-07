@@ -73,7 +73,7 @@ services:
     image: icestab/backuptocos
     container_name: backuptocos
     volumes:
-      - ./data:/data
+      - ./data:/app/data
     environment:
       COS_SECRET_ID: ''
       COS_SECRET_KEY: ''
