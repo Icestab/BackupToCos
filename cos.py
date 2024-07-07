@@ -33,12 +33,15 @@ response = client.upload_file(
     EnableMD5=False,
     progress_callback=None,
 )
-crc64 = crc64.CRC64(uploadName)
-local_crc64ecma = response["x-cos-hash-crc64ecma"]
-logger.info("local crc64ecma: %s", local_crc64ecma)
-cos_crc64ecma = crc64.calculate_crc64()
+
+cos_crc64ecma = response["x-cos-hash-crc64ecma"]
 logger.info("cos crc64ecma: %s", cos_crc64ecma)
+crc64 = crc64.CRC64(uploadName)
+local_crc64ecma = crc64.calculate_crc64()
+logger.info("local crc64ecma: %s", local_crc64ecma)
 if local_crc64ecma == cos_crc64ecma:
     logger.info("crc64校验成功,文件上传成功")
+    with open(".env", "w") as f:
+        f.write(cos_crc64ecma)
 else:
     logger.info("crc64校验失败,文件上传失败")
