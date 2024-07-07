@@ -1,0 +1,20 @@
+FROM python:3.11.9-slim   
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+COPY . /app
+RUN apt-get update && apt-get install -y cron
+RUN echo "$CRON /app/main.py" >> /app/data/backup_log_$(date +"\%Y-\%m-\%d").log 2>&1 > /etc/cron.d/backup-job
+
+ENV COS_SECRET_ID=""
+ENV COS_SECRET_KEY=""
+ENV COS_BUCKET=""
+ENV COS_REGION=""
+ENV COS_UPLOAD_NAME=""
+
+CMD ["cron", "-f"]
+
