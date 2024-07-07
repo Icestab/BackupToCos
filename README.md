@@ -49,7 +49,7 @@
 - `COS_SECRET_KEY`：腾讯云对象存储（COS）的 SecretKey
 - `COS_BUCKET`：腾讯云对象存储（COS）的存储桶名称
 - `COS_REGION`：腾讯云对象存储（COS）的存储桶所在地域
-- `COS_UPLOAD_NAME`：备份文件名和腾讯云对象存储（COS）的存储桶文件名（建议使用`./data/backup.tar.gz`方便管理）
+- `COS_UPLOAD_NAME`：备份文件名和腾讯云对象存储（COS）的存储桶文件名（建议使用`.././data/backup.tar.gz`方便管理）
 
 4. 将备份文件放入`data`中运行脚本：`python main.py`测试：
 
