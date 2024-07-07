@@ -1,18 +1,12 @@
 <h1 align="center">Backup To Cos</h1>
 
----
-
 <p align="center">A simple backup tool for your data to Cos</p>
 
 ## 项目简介
 
----
-
 本项目是一个简单的备份工具，可以将本地文件备份到腾讯云对象存储（COS）中。由于部署了一些项目，虽然已经本地备份，但仍然担心数据丢失，于是便有了这个项目。
 
 ## 功能
-
----
 
 - 支持指定文件备份（单文件）
 - 支持备份时检测文件是否已经修改
@@ -31,15 +25,13 @@
 
 ## 注意事项
 
----
-
 - 本项目仅用于学习交流，请勿用于非法用途
 - 本项目中的代码仅供参考，请勿直接使用
 - 本项目中的代码可能存在安全漏洞，请自行评估风险
 
 ## 使用方法
 
----
+> 本项目使用 python3.11 开发其余版本未经测试，使用前请确保已安装 python3.11
 
 1. 拉取项目，安装依赖：`pip install -r requirements.txt`
 2. 配置腾讯云对象存储（COS），建议使用子账号（保存 id 和 key，后续 key 不可获取）[参考文档](https://cloud.tencent.com/document/product/436/11714)，创建用于备份是存储桶，授予子账号数据读取和写入权限满足[最小权限原则说明](https://cloud.tencent.com/document/product/436/38618)
@@ -61,9 +53,7 @@
 
 ## Docker
 
----
-
-使用项目中`Dockerfile`构建镜像，运行容器，并挂载`data`目录，加入上面的环境变量和定时任务环境变量即可
+使用项目中`Dockerfile`构建镜像或直接拉取我构建的镜像`docker pull icestab/backup-to-cos`，运行容器，并挂载`data`目录，加入上面的环境变量和定时任务环境变量即可
 
 docker-compose.yml
 
