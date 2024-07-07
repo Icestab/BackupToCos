@@ -70,7 +70,7 @@ docker-compose.yml
 ```yaml
 services:
   backuptocos:
-    image: icestab/backuptocos
+    image: icestab/backup-to-cos
     container_name: backuptocos
     volumes:
       - ./data:/app/data
