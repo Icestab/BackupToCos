@@ -50,7 +50,7 @@ class Cos:
             logger.info("文件不存在")
             exit()
         try:
-            with open("../.env", "r") as f:
+            with open(".env", "r") as f:
                 previous_crc64 = f.read().strip()
         except FileNotFoundError:
             previous_crc64 = None
@@ -74,7 +74,7 @@ class Cos:
         logger.info("local crc64ecma: %s", self.local_crc64ecma)
         if self.local_crc64ecma == self.cos_crc64ecma:
             logger.info("crc64校验成功,文件上传成功")
-            with open("../.env", "w") as f:
+            with open(".env", "w") as f:
                 f.write(self.cos_crc64ecma)
         else:
             logger.info("crc64校验失败,文件上传失败")
