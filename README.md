@@ -79,6 +79,6 @@ services:
       COS_SECRET_KEY: ''
       COS_BUCKET: ''
       COS_REGION: ''
-      COS_UPLOAD_NAME: '/app/data/backup.tar.gz'
+      COS_UPLOAD_NAME: './data/backup.tar.gz'
       CRON_SCHEDULE: '0 0 * * *'
 ```
