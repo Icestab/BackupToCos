@@ -9,7 +9,11 @@ from cos import Cos
 # 定义函数
 def main():
     # 配置日志记录
-    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        stream=sys.stdout,
+    )
 
     cos = Cos()
     cos.upload()
