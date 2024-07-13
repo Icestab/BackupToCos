@@ -14,6 +14,8 @@
 - 支持备份日志记录
 - 目前，仅支持腾讯云对象存储（COS）
 - 每次同步覆盖 cos 中的文件
+- 新增容器时间环境变量默认上海时间，确保 cron 准确执行
+- 本地文件上传时检验 sha256，防止本地文件未打包压缩完成时被上传
 
 ## 开发计划
 
@@ -70,5 +72,11 @@ services:
       COS_BUCKET: ''
       COS_REGION: ''
       COS_UPLOAD_NAME: './data/backup.tar.gz'
-      CRON_SCHEDULE: '0 0 * * *'
+      CRON_SCHEDULE: '0 * * * *'
+      TZ: 'Asia/Shanghai'
 ```
+
+TIPS:
+`CRON_SCHEDULE: '0 * * * *'`
+`TZ: 'Asia/Shanghai'`
+这两项为镜像默认值，可不使用，如需修改请加上
