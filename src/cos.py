@@ -48,7 +48,7 @@ class Cos:
 
     def upload(self):
         if not os.path.exists(self.uploadName):
-            logger.info("文件不存在")
+            logger.error("文件不存在")
             exit()
         try:
             with open(".env", "r") as f:
@@ -59,7 +59,7 @@ class Cos:
         if self.local_crc64ecma != previous_crc64:
             logger.info("文件有变化，开始校验sha256")
             if not verify_sha256.verify_file_with_sha256sum(self.uploadName):
-                logger.info("sha256校验失败")
+                logger.error("sha256校验失败")
                 exit()
             response = self.client.upload_file(
                 Bucket=self.Bucket,
@@ -81,7 +81,7 @@ class Cos:
             with open(".env", "w") as f:
                 f.write(self.cos_crc64ecma)
         else:
-            logger.info("crc64校验失败,文件上传失败")
+            logger.error("crc64校验失败,文件上传失败")
 
 
 if __name__ == "__main__":
