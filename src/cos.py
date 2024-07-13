@@ -5,6 +5,7 @@ import sys
 import os
 import logging
 import crc64
+import verify_sha256
 
 # 正常情况日志级别使用 INFO，需要定位时可以修改为 DEBUG，此时 SDK 会打印和服务端的通信信息
 logger = logging.getLogger(__name__)
@@ -56,7 +57,10 @@ class Cos:
             previous_crc64 = None
 
         if self.local_crc64ecma != previous_crc64:
-            logger.info("文件有变化，开始上传")
+            logger.info("文件有变化，开始校验sha256")
+            if not verify_sha256.verify_file_with_sha256sum(self.uploadName):
+                logger.info("sha256校验失败")
+                exit()
             response = self.client.upload_file(
                 Bucket=self.Bucket,
                 Key=self.uploadName,
