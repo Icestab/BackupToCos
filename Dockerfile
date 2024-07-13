@@ -9,6 +9,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY src/ /app
 
 RUN apt-get update && apt-get install -y cron
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
